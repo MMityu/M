@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OH tesztfeladat: pontszámítás</title>
+  <META charset="utf-8" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    h1 { color: #42b983; }
+    .container { margin-top: 20px; }
+    select { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Válasszon teszt-esetet</h1>
+    <div class="container">
+      <select v-model="selectedValue" @change="fetchData">
+        <option v-for="option in options" :value="option.value" :key="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+      <p>Választott eset: {{ selectedValue }}</p>
+      <p v-if="response">{{ response }}</p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        selectedValue: '',
+        response: '',
+        options: [
+          { value: '1', label: 'tesz-eset 1' },
+          { value: '2', label: 'tesz-eset 2' },
+          { value: '3', label: 'tesz-eset 3' },
+          { value: '4', label: 'tesz-eset 4' },
+        ]
+      },
+      methods: {
+        fetchData() {
+          fetch(`controllerClass.php?testcase=${this.selectedValue}`)
+            .then(response => response.text())
+            .then(data => {
+              this.response = data;
+              console.log( data );
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -40,17 +40,20 @@ if( isset($_GET['testcase'])  && in_array($_GET['testcase'], [1,2,3,4]))
 
 	
 
-	echo "<pre> getProfSubjectScore: ";
-	echo $output = $model->getProfSubjectScore();
-	echo "<br> getBestOptSubjectScore: ";
-	echo $output = $model->getBestOptSubjectScore();
-	echo "<br> getBaseScore: ";
-	echo $output = $model->getBaseScore();
-	echo "<br> getLangExamsScore: ";
-	echo $output = $model->getLangExamsScore();
-	echo "<br> getPlusScore: ";
-	echo $output = $model->getPlusScore();
-	echo "</pre>";
+	# echo "<pre> getProfSubjectScore: ";
+	# echo $output = $model->getProfSubjectScore();
+	# echo "<br> getBestOptSubjectScore: ";
+	# echo $output = $model->getBestOptSubjectScore();
+	# echo "<br> getBaseScore: ";
+	# echo $output = $model->getBaseScore();
+	# echo "<br> getLangExamsScore: ";
+	# echo $output = $model->getLangExamsScore();
+	# echo "<br> getAdvScore: ";
+	# echo $output = $model->getAdvScore();
+	# echo "<br> getPlusScore: ";
+	# echo $output = $model->getPlusScore();
+	# echo "<br> getScore: ";
+	echo $model->getScore();
 }
 
 

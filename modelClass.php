@@ -143,21 +143,14 @@ class Model
 	}
 
 
-	# kötelező tárgy pontértékét és 
-	# a legjobban sikerült kötelezően választható tárgy pontértékét 
-	# kell összeadni és az így kapott összeget megduplázni.
-
-	# $mandMatureSubject = getMandMatureSubject();
-	# $bestProfSubject = getBestProfSubject();
-	# $score = ( $mandMatureSubject + $bestProfSubject ) * 2
 	public function getBaseScore() : int
 	{
-		$score = ( $this->getProfSubjectScore() + $this->getBestOptSubjectScore() ) * 2;
-		return $score;
+		$_score = ( $this->getProfSubjectScore() + $this->getBestOptSubjectScore() ) * 2;
+		return $_score;
 	}
 
 
-	public function getPlusScore() : int
+	public function getAdvScore() : int
 	{
 		$_score = 0;
 		foreach ($this->maturesubjects as $maturesubject) {
@@ -166,26 +159,17 @@ class Model
 		return $_score;
 	}
 
-	
+
+	public function getPlusScore() : int
+	{
+		$_score = $this->getLangExamsScore() + $this->getAdvScore();
+		return $_score > 100 ? 100 : $_score;
+	}
+
+	public function getScore()
+	{
+		return $this->getBaseScore() + $this->getPlusScore();
+	}
 
 }
-
-
-
-
-
-# function checkMandSubjects($value_array)
-# {
-# 	if( !is_array( $value_array ) ) return false;
-# 	$_arraydiff = array_diff(MAND_EXAMS, $value_array);
-# 	return $_arraydiff;
-# }
-# 
-# 
-# function checkProfSubjects($value_array = [])
-# {
-# 	if( !is_array( $value_array ) ) return false;
-# 	$_arraydiff = array_diff(MAND_EXAMS, $value_array);
-# 	return $_arraydiff;
-# }
 ?>
