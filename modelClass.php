@@ -116,11 +116,17 @@ class Model
 		return true;
 	}
 
+
 	public function getLangExamsScore() : int
 	{
 		$_langExamScore = 0;
-		foreach ($this->langexams as $langexam)
-		$_langExamScore += self::PLUS_LANG_POINTS[$langexam['tipus']] ?? '0';
+		$_langExamsTable = [];
+		foreach ($this->langexams as $_langexam)
+			if(!array_key_exists($_langexam['nyelv'], $_langExamsTable) || $_langexam['tipus'] == "C1" )
+				$_langExamsTable[$_langexam['nyelv']] = $_langexam['tipus'];
+		foreach ($_langExamsTable as $_langexam) {
+			$_langExamScore += self::PLUS_LANG_POINTS[$_langexam] ?? '0';
+		}
 		return $_langExamScore;
 	}
 
