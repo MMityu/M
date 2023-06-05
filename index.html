@@ -40,7 +40,7 @@
       },
       methods: {
         fetchData() {
-          fetch(`controllerClass.php?testcase=${this.selectedValue}`)
+          fetch(`controller.php?testcase=${this.selectedValue}`)
             .then(response => response.text())
             .then(data => {
               this.response = data;

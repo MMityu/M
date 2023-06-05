@@ -166,7 +166,7 @@ class Model
 		return $_score > 100 ? 100 : $_score;
 	}
 
-	public function getScore()
+	public function getScore() : int
 	{
 		return $this->getBaseScore() + $this->getPlusScore();
 	}
